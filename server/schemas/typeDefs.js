@@ -10,10 +10,15 @@ const typeDefs = `
 
   type Book{
     bookId: ID!
-    description: String
+    description: String!
     image: String
     link: String
-    title: String
+    title: String!
+    authors: [String]
+    categories: [String]
+    price: Float!
+    purchaseQuantity: Int
+    inventory: Int!
   }
 
   type Order {

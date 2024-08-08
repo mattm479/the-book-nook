@@ -8,12 +8,21 @@ const bookSchema = new Schema({
       type: String,
     },
   ],
+  categories: [
+    {
+      type: String,
+    },
+  ],
   description: {
     type: String,
     required: true,
   },
   // saved book id from GoogleBooks
   bookId: {
+    type: String,
+    required: true,
+  },
+  bookISBN: {
     type: String,
     required: true,
   },
@@ -37,7 +46,7 @@ const bookSchema = new Schema({
   inventory: {
     type: Number,
     required: true,
-    min: 0,
+    default: Math.floor(Math.random() * 100),
   },
 });
 
