@@ -5,6 +5,7 @@ const typeDefs = `
     email: String
     password: String
     savedBooks: [Book]!
+    orders: [Order]
   }
 
   type Book{
@@ -13,6 +14,12 @@ const typeDefs = `
     image: String
     link: String
     title: String
+  }
+
+  type Order {
+    _id: ID
+    purchaseDate: String
+    books: [Book]
   }
 
   type Auth {

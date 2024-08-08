@@ -5,7 +5,7 @@ const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 
 module.exports = {
-  AuthenticationError: new GraphQLError('COuld now authenticate user', {
+  AuthenticationError: new GraphQLError('Could now authenticate user', {
     extensions: {
       code: 'UNAUTHENTICATED',
     }
