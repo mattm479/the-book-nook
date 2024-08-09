@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { Theme } from '@radix-ui/themes';
 
 const ThemeContext = createContext();
 
@@ -7,7 +8,9 @@ export const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={theme}>{children}</div> {/* Apply theme class */}
+      <Theme>
+        <div className={theme}>{children}</div>
+      </Theme> {/* Apply theme class */}
     </ThemeContext.Provider>
   );
 };
