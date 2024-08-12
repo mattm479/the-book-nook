@@ -49,7 +49,7 @@ const typeDefs = `
     signOut(userId: ID!): Boolean
     addToCart(userId: ID!, bookISBN: String!): Book
     saveBook(userId: ID!, bookISBN: String!): Boolean
-    removeItemFromCart(userId: ID!, bookISBN: String!): Book
+    removeItemFromCart(userId: ID!, bookISBN: String!): Boolean
   }
 `;
 
