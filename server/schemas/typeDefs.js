@@ -50,6 +50,7 @@ const typeDefs = `
     addToCart(userId: ID!, bookISBN: String!): Book
     saveBook(userId: ID!, bookISBN: String!): Boolean
     removeItemFromCart(userId: ID!, bookISBN: String!): Boolean
+    viewOrderHistory(userId: ID!): [Order]
   }
 `;
 
