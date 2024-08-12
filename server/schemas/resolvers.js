@@ -4,12 +4,17 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
    Query: {
-      me: async (parent, args, context) => {
-        if (context.user) {
-          return await User.findOne({ _id: context.user._id });
-        }
-        throw AuthenticationError;
+      bookSearch: async (parent, { query }, context) => {
+            return await Book.find( {$text: {$search : query} })
       },
+
+      getBooks: async (parent, args, context) => {
+         return await Book.find({});
+      },
+
+      getSingleBook: async(parent, {bookId}, context) => {
+         return await Book.findById(bookId)
+      }
 
     },
   
