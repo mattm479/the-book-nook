@@ -1,0 +1,35 @@
+
+.header {
+    background: #4A3F35;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header-logo {
+    font-family: 'Merriweather, serif';
+    font-size: 36px;
+    font-weight: bold;
+    color: #F0EAD6;
+    text-transform: uppercase;
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .header-nav-link {
+    font-family: 'Open Sans, sans-serif';
+    font-size: 18px;
+    color: #F0EAD6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .header-nav-link:hover {
+    color: #C0A77B;
+  }
+  
+  
