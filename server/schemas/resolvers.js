@@ -75,26 +75,44 @@ const resolvers = {
        },
        
       addUser: async (parent, { username, email, password }) => {
-        const user = await User.create({ username, email, password });
-        const token = signToken(user);
-        return { token, user };
+         const user = await User.create({ username, email, password });
+         const token = signToken(user);
+         return { token, user };
       },
 
       signIn: async (parent, { username, password }) => {
-        const user = await User.findOne({ username });
-        if (!user) {
-          throw AuthenticationError;
-        }
-        const correctPw = await user.isCorrectPassword(password);
-        if (!correctPw) {
-          throw AuthenticationError;
-        }
+         const user = await User.findOne({ username });
+         if (!user) {
+            throw AuthenticationError;
+         }
+         const correctPw = await user.isCorrectPassword(password);
+         if (!correctPw) {
+            throw AuthenticationError;
+         }
 
-        const token = signToken(user);
-        return { token, user };
+         const token = signToken(user);
+         return { token, user };
       },
 
-   }
+      viewOrderHistory: async (parent, { userId }, context) => {
+         if (context.user && context.user._id === userId) {
+            const orders = await Order.find({ user: userId });
+            return orders;
+         }
+      },
+
+      removeItemFromCart: async (parent, { userId, bookISBN }, context) => {
+         if (context.user && context.user._id === userId) {
+            const user = await User.findById(userId);
+            const index = user.cart.indexOf(bookISBN);
+            if (index !== -1) {
+               user.cart.splice(index, 1);
+               await user.save();
+               return true;
+            }
+         }
+      },
+   },
 };
 
 module.exports = resolvers;
