@@ -4,6 +4,7 @@ import { Flex, Theme } from '@radix-ui/themes';
 import { ThemeProvider } from './theme/ThemeContext'; // Import ThemeProvider
 import Header from "./components/Header/Header.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Theme>
           <Navbar />
       <Header />
+      <Footer />
       </Theme>
       </Flex>
     </ThemeProvider>

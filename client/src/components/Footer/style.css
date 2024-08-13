@@ -1,0 +1,36 @@
+
+.footer {
+    background: #2C2A29; /* Match the navbar/header background */
+    color: #F0EAD6; /* Match the text color */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-left {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer-link {
+    color: #F0EAD6;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #C0A77B; /* Match the hover color used in navbar */
+  }
+  
