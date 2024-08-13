@@ -3,6 +3,7 @@ import '@radix-ui/themes/styles.css'; // Import Radix UI theme styles
 import { Flex, Theme } from '@radix-ui/themes';
 import { ThemeProvider } from './theme/ThemeContext'; // Import ThemeProvider
 import Header from "./components/Header/Header.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
     <ThemeProvider>
       <Flex direction="column" gap="2">
         <Theme>
+          <Navbar />
       <Header />
       </Theme>
       </Flex>
