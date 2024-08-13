@@ -5,6 +5,7 @@ import { ThemeProvider } from './theme/ThemeContext'; // Import ThemeProvider
 import Header from "./components/Header/Header.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import Homepage from "./pages/Home.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Theme>
           <Navbar />
       <Header />
+      <Homepage />
       <Footer />
       </Theme>
       </Flex>
