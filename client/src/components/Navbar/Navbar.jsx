@@ -1,6 +1,6 @@
-import React from 'react';
 import bookIcon from '../../assets/book.png';
 import './style.css';
+import {Link} from "react-router-dom";
 
 function Navbar() {
   return (
@@ -10,10 +10,11 @@ function Navbar() {
           <img src={bookIcon} alt="Book Nook" className="navbar-logo-icon" />
         </div>
         <div className="navbar-nav">
-          <a href="#home" className="navbar-nav-link">Home</a>
-          <a href="#contact" className="navbar-nav-link">Contact</a>
-          <a href="#login" className="navbar-nav-link">Login/Signup</a>
-          <a href="#cart" className="navbar-nav-link">Cart</a>
+            <Link to={"/"} className="navbar-nav-link">Home</Link>
+            <Link to={"/contact"} className="navbar-nav-link">Contact</Link>
+            <Link to={"/signIn"} className="navbar-nav-link">SignIn</Link>
+            <Link to={"/signUp"} className="navbar-nav-link">SignUp</Link>
+            <Link to={"#cart"} className="navbar-nav-link">Cart</Link>
         </div>
       </div>
       <div className="navbar-search">
