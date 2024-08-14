@@ -10,6 +10,7 @@ const typeDefs = `
 
   type Book{
     bookId: ID!
+    bookISBN: String
     description: String!
     image: String
     link: String
@@ -36,7 +37,7 @@ const typeDefs = `
     me: User
     bookSearch(query: String!): [Book]
     getBooks: [Book]
-    getSingleBook(bookId: ID!): Book
+    getSingleBook(bookISBN: String!): Book
     orderHistory(userId: ID!): [Order]
   }
 
