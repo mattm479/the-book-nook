@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const SIGN_UP = gql`
     mutation signUp($username: String!, $email: String!, $password: String!) {
-        auth(username: $username, email: $email, password: $password) {
+        signUp(username: $username, email: $email, password: $password) {
             token
             user {
                 _id
@@ -24,8 +24,8 @@ export const SIGN_UP = gql`
 `;
 
 export const SIGN_IN = gql`
-    mutation signIn($username: String!, password: String!) {
-        auth(username: $username, password: $password) {
+    mutation signIn($username: String!, $password: String!) {
+        signIn(username: $username, password: $password) {
             token
             user {
                 _id
@@ -48,7 +48,7 @@ export const SIGN_IN = gql`
 
 export const CHANGE_USERNAME = gql`
     mutation changeUsername($userId: ID!, $username: String!) {
-        auth(userId: $userId, username: $username) {
+        changeUsername(userId: $userId, username: $username) {
             token
             user {
                 _id
@@ -71,7 +71,7 @@ export const CHANGE_USERNAME = gql`
 
 export const CHANGE_EMAIL = gql`
     mutation changeEmail($userId: ID!, $email: String!) {
-        auth(userId: $userId, email: $email) {
+        changeEmail(userId: $userId, email: $email) {
             token
             user {
                 _id
@@ -124,7 +124,7 @@ export const ADD_TO_CART = gql`
 `;
 
 export const SAVE_BOOK = gql`
-    mutation saveBook($userId: ID!, bookISBN: String!) {
+    mutation saveBook($userId: ID!, $bookISBN: String!) {
         saveBook(userId: $userId, bookISBN: $bookISBN)
     }
 `;

@@ -1,9 +1,7 @@
-
-import React from 'react';
 import { Box, Heading, Text, Flex, Link } from '@radix-ui/themes';
 import '../styles/App.css';
 
-function Homepage() {
+function Home() {
   return (
     <Box className="homepage">
       <Box className="homepage-header">
@@ -45,4 +43,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Home;
