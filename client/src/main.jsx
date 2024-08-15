@@ -8,6 +8,7 @@ import Signup from "./pages/SignUp.jsx";
 import Profile from "./pages/Profile.jsx";
 import BookDetails from "./pages/BookDetails.jsx";
 import Admin from "./pages/Admin.jsx";
+import SignOut from "./pages/SignOut.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/signUp',
                 element: <Signup />
+            },
+            {
+                path: '/signOut',
+                element: <SignOut />
             },
             {
                 path: '/profile',

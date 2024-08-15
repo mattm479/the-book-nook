@@ -14,15 +14,15 @@ function Navbar() {
         </div>
         <div className="navbar-nav">
             <Link to={"/"} className="navbar-nav-link">Home</Link>
-            <Link to={"/contact"} className="navbar-nav-link">Contact</Link>
             {isLoggedIn
-                ?
-                    <>
+                ?   <>
+                        <Link to={"/profile"} className="navbar-nav-link">Profile</Link>
+                        <Link to={"/signOut"} className="navbar-nav-link">SignOut</Link>
+                    </>
+                :   <>
                         <Link to={"/signIn"} className="navbar-nav-link">SignIn</Link>
                         <Link to={"/signUp"} className="navbar-nav-link">SignUp</Link>
                     </>
-                :
-                    <Link to={"/signOut"} className="navbar-nav-link">SignOut</Link>
             }
             <Link to={"#cart"} className="navbar-nav-link">Cart</Link>
         </div>
