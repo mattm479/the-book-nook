@@ -8,7 +8,7 @@ const resolvers = {
          try {
            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
            const data = await response.json();
-   
+
            const books = data.items.map((item) => ({
              bookId: item.id,
              title: item.volumeInfo.title,
@@ -52,7 +52,7 @@ const resolvers = {
       }
 
     },
-  
+
     Mutation: {
        changeUsername: async (parent, { userId, username }, context) => {
           if (context.user && context.user._id === userId) {
@@ -61,13 +61,13 @@ const resolvers = {
              { username },
              { new: true }
           );
- 
+
           const token = signToken(user);
           return { token, user };
           }
           throw new AuthenticationError('You need to be logged in to change your username');
        },
- 
+
        changeEmail: async (parent, { userId, email }, context) => {
           if (context.user && context.user._id === userId) {
           const user = await User.findByIdAndUpdate(
@@ -80,7 +80,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to change your email');
        },
- 
+
        addToCart: async (parent, { userId, bookISBN }, context) => {
           if (context.user && context.user._id === userId) {
           const book = await Book.findOne({ isbn: bookISBN });
@@ -94,7 +94,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to add items to your cart');
        },
- 
+
        saveBook: async (parent, { userId, bookISBN }, context) => {
           if (context.user && context.user._id === userId) {
           const book = await Book.findOne({ isbn: bookISBN });
@@ -108,8 +108,8 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to save books');
        },
-       
-      addUser: async (parent, { username, email, password }) => {
+
+      signUp: async (parent, { username, email, password }) => {
          const user = await User.create({ username, email, password });
          const token = signToken(user);
          return { token, user };

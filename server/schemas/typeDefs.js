@@ -4,6 +4,7 @@ const typeDefs = `
     username: String
     email: String
     password: String
+    bookCount: Int
     savedBooks: [Book]!
     orders: [Order]
   }
@@ -42,7 +43,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    signUp(username: String!, email: String!, password: String!): Auth
     signIn(username: String!, password: String!): Auth
     changeUsername(userId: ID!, username: String!): Auth
     changeEmail(userId: ID!, email: String!): Auth
