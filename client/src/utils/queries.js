@@ -3,21 +3,18 @@ import { gql } from '@apollo/client';
 export const ME = gql`
     query me($_id: ID!) {
         me(_id: $_id) {
-            token
-            user {
-                _id
-                username
-                email
-                bookCount
-                savedBooks {
-                    bookId
-                    title
-                    authors
-                    description
-                    image
-                    quantity
-                    price
-                }
+            _id
+            username
+            email
+            bookCount
+            savedBooks {
+                bookId
+                title
+                authors
+                description
+                image
+                inventory
+                price
             }
         }
     }

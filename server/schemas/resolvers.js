@@ -4,6 +4,15 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
    Query: {
+       me: async (parent, { _id }) => {
+           const foundUser = await User.findById(_id);
+
+           if (!foundUser) {
+               throw new Error('Cannot find a user with this id!');
+           }
+
+           return foundUser;
+       },
       bookSearch: async (parent, { query }, context) => {
          try {
            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);

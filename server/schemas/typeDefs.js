@@ -35,7 +35,7 @@ const typeDefs = `
   }
 
   type Query {
-    me: User
+    me(_id: ID!): User
     bookSearch(query: String!): [Book]
     getBooks: [Book]
     getSingleBook(bookISBN: String!): Book

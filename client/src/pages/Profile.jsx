@@ -1,5 +1,81 @@
-function Profile() {
+import Auth from "../utils/auth.js";
+import {useQuery} from "@apollo/client";
+import {ME} from "../utils/queries.js";
+import {Box, Button, Card, Code, DataList} from "@radix-ui/themes";
+import {useEffect, useState} from "react";
 
+import './Profile.css';
+
+function Profile() {
+    const profile = Auth.getProfile();
+    const { loading, data } = useQuery(ME, { variables: { _id: profile.data._id } });
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("********");
+
+    useEffect(() => {
+        if (!data) return;
+        setUsername(data.me.username);
+        setEmail(data.me.email);
+    }, [data]);
+
+    if (loading) return "Loading...";
+    //console.log(data);
+
+    function toggleInput(field) {
+        const element = document.getElementById(field);
+
+        if (element.disabled) {
+            element.removeAttribute("disabled");
+            element.focus();
+        }
+        else element.setAttribute("disabled", "true");
+    }
+
+    return (
+        <Box width="500px" className="profile">
+            <Card size="3">
+                <DataList.Root>
+                    <DataList.Item className="item">
+                        <DataList.Label className="label">ID</DataList.Label>
+                        <DataList.Value>
+                            <Code variant="ghost">{data.me._id}</Code>
+                        </DataList.Value>
+                    </DataList.Item>
+                    <DataList.Item className="item">
+                        <DataList.Label className="label">Username</DataList.Label>
+                        <DataList.Value>
+                            <div className="change-form">
+                                <input type="username" id="username" name="username" value={username} onChange={(event) => setUsername(event.target.value)} disabled />
+                                <Button type="submit" id="save-username">Save</Button>
+                                <Button onClick={() => toggleInput("username")}>Change Username</Button>
+                            </div>
+                        </DataList.Value>
+                    </DataList.Item>
+                    <DataList.Item className="item">
+                        <DataList.Label className="label">Email Address</DataList.Label>
+                        <DataList.Value>
+                            <div className="change-form">
+                                <input type="email" id="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} disabled />
+                                <Button type="submit" id="save-email">Save</Button>
+                                <Button onClick={() => toggleInput("email")}>Change Email</Button>
+                            </div>
+                        </DataList.Value>
+                    </DataList.Item>
+                    <DataList.Item className="item">
+                        <DataList.Label className="label">Password</DataList.Label>
+                        <DataList.Value>
+                            <div className="change-form">
+                                <input type="password" id="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)} disabled />
+                                <Button type="submit" id="save-password">Save</Button>
+                                <Button id="change-password-button" onClick={() => toggleInput("password")}>Change Password</Button>
+                            </div>
+                        </DataList.Value>
+                    </DataList.Item>
+                </DataList.Root>
+            </Card>
+        </Box>
+    );
 }
 
 export default Profile;
