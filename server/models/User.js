@@ -26,7 +26,8 @@ const userSchema = new Schema(
     savedBooks: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Book'
+        ref: 'Book',
+        default: []
       }
     ],
     cart: [
