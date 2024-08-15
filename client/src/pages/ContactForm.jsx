@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import * as Form from '@radix-ui/react-form';
 import '../styles/contact.css';
 import emailjs from '@emailjs/browser';
