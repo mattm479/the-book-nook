@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import * as Form from '@radix-ui/react-form';
-import './style.css';
+import '../styles/contact.css';
 import emailjs from '@emailjs/browser';
 
 function ContactForm() {
