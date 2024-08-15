@@ -15,7 +15,7 @@ export const SIGN_UP = gql`
                     authors
                     description
                     image
-                    quantity
+                    inventory
                     price
                 }
             }
@@ -38,7 +38,7 @@ export const SIGN_IN = gql`
                     authors
                     description
                     image
-                    quantity
+                    inventory
                     price
                 }
             }
@@ -61,7 +61,7 @@ export const CHANGE_USERNAME = gql`
                     authors
                     description
                     image
-                    quantity
+                    inventory
                     price
                 }
             }
@@ -84,7 +84,7 @@ export const CHANGE_EMAIL = gql`
                     authors
                     description
                     image
-                    quantity
+                    inventory
                     price
                 }
             }
@@ -113,7 +113,7 @@ export const ADD_TO_CART = gql`
             authors
             description
             image
-            quantity
+            inventory
             price
             genre
             pageCount
@@ -137,7 +137,7 @@ export const REMOVE_ITEM_FROM_CART = gql`
             authors
             description
             image
-            quantity
+            inventory
             price
             genre
             pageCount

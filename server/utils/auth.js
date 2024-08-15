@@ -5,7 +5,7 @@ const secret = process.env.JWT_SECRET
 const expiration = '2h';
 
 module.exports = {
-  AuthenticationError: new GraphQLError('Could now authenticate user', {
+  AuthenticationError: new GraphQLError('Could not authenticate user', {
     extensions: {
       code: 'UNAUTHENTICATED',
     }
