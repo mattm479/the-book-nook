@@ -5,19 +5,54 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
    Query: {
       bookSearch: async (parent, { query }, context) => {
-            return await Book.find( {$text: {$search : query} })
+         try {
+           const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+           const data = await response.json();
+
+           const books = data.items.map((item) => ({
+             bookId: item.id,
+             title: item.volumeInfo.title,
+             authors: item.volumeInfo.authors || [],
+             description: item.volumeInfo.description || 'No description available',
+             bookISBN: item.volumeInfo.industryIdentifiers
+            ? item.volumeInfo.industryIdentifiers.find(identifier => identifier.type === 'ISBN_10')?.identifier
+            : 'No ISBN-10 available',
+             image: item.volumeInfo.imageLinks?.thumbnail || '',
+             categories: item.volumeInfo.categories || [],
+             price: item.saleInfo?.retailPrice?.amount || Math.floor(Math.random() * (80 - 50 + 1)) + 50,
+           }));
+           return books;
+
+         } catch (error) {
+           console.error('Error fetching books:', error);
+           throw new Error('Failed to fetch books');
+         }
       },
 
-      getBooks: async (parent, args, context) => {
-         return await Book.find({});
+      getSingleBook: async (parent, {isbn}, context) => {
+         const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
+         const item = await response.json();
+
+         return {
+            bookId: item.id,
+            title: item.volumeInfo.title,
+            authors: item.volumeInfo.authors || [],
+            description: item.volumeInfo.description || 'No description available',
+            bookISBN: item.volumeInfo.industryIdentifiers
+           ? item.volumeInfo.industryIdentifiers.find(identifier => identifier.type === 'ISBN_10')?.identifier
+           : 'No ISBN-10 available',
+            image: item.volumeInfo.imageLinks?.thumbnail || '',
+            categories: item.volumeInfo.categories || [],
+            price: item.saleInfo?.retailPrice?.amount || Math.floor(Math.random() * (80 - 50 + 1)) + 50,
+         }
       },
 
-      getSingleBook: async(parent, {bookId}, context) => {
-         return await Book.findById(bookId)
+      getBooks: async(parent, args, context) => {
+         return await Book.find({})
       }
 
     },
-  
+
     Mutation: {
        changeUsername: async (parent, { userId, username }, context) => {
           if (context.user && context.user._id === userId) {
@@ -26,13 +61,13 @@ const resolvers = {
              { username },
              { new: true }
           );
- 
+
           const token = signToken(user);
           return { token, user };
           }
           throw new AuthenticationError('You need to be logged in to change your username');
        },
- 
+
        changeEmail: async (parent, { userId, email }, context) => {
           if (context.user && context.user._id === userId) {
           const user = await User.findByIdAndUpdate(
@@ -45,7 +80,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to change your email');
        },
- 
+
        addToCart: async (parent, { userId, bookISBN }, context) => {
           if (context.user && context.user._id === userId) {
           const book = await Book.findOne({ isbn: bookISBN });
@@ -59,7 +94,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to add items to your cart');
        },
- 
+
        saveBook: async (parent, { userId, bookISBN }, context) => {
           if (context.user && context.user._id === userId) {
           const book = await Book.findOne({ isbn: bookISBN });
@@ -73,8 +108,8 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to save books');
        },
-       
-      addUser: async (parent, { username, email, password }) => {
+
+      signUp: async (parent, { username, email, password }) => {
          const user = await User.create({ username, email, password });
          const token = signToken(user);
          return { token, user };
