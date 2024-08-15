@@ -34,3 +34,5 @@ function BookCard(bookData) {
         </Box>
     );
 }
+
+export default BookCard;
