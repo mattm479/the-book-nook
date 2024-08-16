@@ -1,10 +1,9 @@
-
 import React from 'react';
 import './style.css';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer footer-absolute">
       <div className="footer-content">
         <div className="footer-left">
           <p>&copy; 2024 The Book Nook. All rights reserved.</p>
@@ -19,3 +18,4 @@ function Footer() {
 }
 
 export default Footer;
+
