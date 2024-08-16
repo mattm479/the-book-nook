@@ -9,6 +9,7 @@ import Profile from "./pages/Profile.jsx";
 import BookDetails from "./pages/BookDetails.jsx";
 import Admin from "./pages/Admin.jsx";
 import SignOut from "./pages/SignOut.jsx";
+import BookSearch from "./pages/BookSearch.jsx";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile />
+            },
+            {
+                path: '/booksearch',
+                element: <BookSearch />
             },
             {
                 path: '/book/:bookId',

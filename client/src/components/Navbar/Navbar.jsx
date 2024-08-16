@@ -1,4 +1,5 @@
 import bookIcon from '../../assets/book.png';
+import SearchBar from '../SearchBar/searchBar'
 import './style.css';
 import {Link} from "react-router-dom";
 import Auth from "../../utils/auth.js";
@@ -27,16 +28,7 @@ function Navbar() {
             <Link to={"#cart"} className="navbar-nav-link">Cart</Link>
         </div>
       </div>
-      <div className="navbar-search">
-        <input
-          type="text"
-          placeholder="Search for books..."
-          className="search-input"
-        />
-        <button className="search-button">
-          Search
-        </button>
-      </div>
+      <SearchBar />
     </nav>
   );
 }

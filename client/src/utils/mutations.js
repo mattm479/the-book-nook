@@ -152,7 +152,7 @@ export const ORDER_HISTORY = gql`
         orderHistory(userId: $userId) {
             orderId {
                 title
-                quantity
+                
                 price
             }
         }
