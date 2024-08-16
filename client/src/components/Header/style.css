@@ -1,6 +1,7 @@
 /* style.css */
 
 .header {
+  min-height: 75px;
   background: #4A3F35;
   padding: 20px;
   display: flex;
