@@ -95,7 +95,24 @@ export const CHANGE_EMAIL = gql`
 // TODO: If this doesn't work try adding curly braces
 export const CHANGE_PASSWORD = gql`
     mutation changePassword($userId: ID!, $password: String!) {
-        changePassword(userId: $userId, password: $password) 
+        changePassword(userId: $userId, password: $password) {
+            token
+            user {
+                _id
+                username
+                email
+                bookCount
+                savedBooks {
+                    bookId
+                    title
+                    authors
+                    description
+                    image
+                    inventory
+                    price
+                }
+            }
+        }
     }
 `;
 

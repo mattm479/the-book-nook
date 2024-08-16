@@ -1,5 +1,6 @@
 const { User, Book, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const bcrypt = require("bcrypt");
 
 
 const resolvers = {
@@ -89,6 +90,20 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to change your email');
        },
+
+        changePassword: async (parent, { userId, password }, context) => {
+            if (context.user && context.user._id === userId) {
+                const saltRounds = 10;
+                const user = await User.findByIdAndUpdate(
+                    userId,
+                    { password: await bcrypt.hash(password, saltRounds) },
+                    { new: true }
+                );
+                const token = signToken(user);
+                return { token, user };
+            }
+            throw new AuthenticationError('You need to be logged in to change your password');
+        },
 
        addToCart: async (parent, { userId, bookISBN }, context) => {
           if (context.user && context.user._id === userId) {
