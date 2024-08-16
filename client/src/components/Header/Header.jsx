@@ -1,19 +1,13 @@
 import React from 'react';
 import './style.css';
+import SearchBar from '../SearchBar/searchBar';
 
 function Header() {
   return (
     <header className="header">
     <div className="header-logo">The Book Nook</div>
     <div className="header-search">
-        <input
-          type="text"
-          placeholder="Search for books..."
-          className="search-input"
-        />
-        <button className="search-button">
-          Search
-        </button>
+      <SearchBar />
       </div>
   </header>
   );
