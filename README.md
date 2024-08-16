@@ -23,7 +23,7 @@ TODO: add screenshots and/or render link
     ```
 ## Technologies
 
-Technologies used: React, Radix UI, Vite, MongoDB, JWT, Apollo, GraphQL, Express.js, Node.js, bcrypt, dotenv
+Technologies used: Google Books API, React, Radix UI, Vite, MongoDB, JWT, Apollo, GraphQL, Express.js, Node.js, bcrypt, dotenv
 
 ## Credits
 
