@@ -22,13 +22,12 @@ export const ME = gql`
 
 export const BOOK_SEARCH = gql`
     query bookSearch($query: String!) {
-        books(query: $query) {
+        bookSearch(query: $query) {
             bookId
             title
             authors
             description
             image
-            quantity
             price
         }
     }
