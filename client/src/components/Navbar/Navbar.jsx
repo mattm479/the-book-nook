@@ -8,26 +8,28 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-left">
-      <div className="navbar-logo">
-          <img src={bookIcon} alt="Book Nook" className="navbar-logo-icon" />
+    <div className="navbar-left">
+        <div className="navbar-logo">
+            <img src={bookIcon} alt="Book Nook" className="navbar-logo-icon" />
         </div>
         <div className="navbar-nav">
-            <Link to={"/"} className="navbar-nav-link">Home</Link>
-            {isLoggedIn
-                ?   <>
-                        <Link to={"/profile"} className="navbar-nav-link">Profile</Link>
-                        <Link to={"/signOut"} className="navbar-nav-link">SignOut</Link>
-                    </>
-                :   <>
-                        <Link to={"/signIn"} className="navbar-nav-link">SignIn</Link>
-                        <Link to={"/signUp"} className="navbar-nav-link">SignUp</Link>
-                    </>
-            }
-            <Link to={"/cart"} className="navbar-nav-link">Cart</Link>
+            <Link to="/" className="navbar-nav-link">Home</Link>
+            <Link to="/cart" className="navbar-nav-link">Cart</Link>
         </div>
-      </div>
-    </nav>
+    </div>
+    <div className="navbar-right">
+        {isLoggedIn
+            ? <>
+                <Link to="/profile" className="navbar-nav-link">Profile</Link>
+                <Link to="/signOut" className="navbar-nav-link">Sign Out</Link>
+              </>
+            : <>
+                <Link to="/signIn" className="navbar-nav-link">Sign In</Link>
+                <Link to="/signUp" className="navbar-nav-link">Sign Up</Link>
+              </>
+        }
+    </div>
+</nav>
   );
 }
 

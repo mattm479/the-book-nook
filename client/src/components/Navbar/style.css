@@ -13,7 +13,7 @@
   }
   
   .navbar-logo-icon {
-    width: 24px; /* Adjust as needed */
+    width: 24px;
     height: auto;
     margin-right: 10px;
     display: inline-block;
@@ -37,4 +37,27 @@
     color: #C0A77B;
   }
   
-  
+  .navbar-nav-link {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #F0EAD6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav-link:hover {
+    color: #C0A77B;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right .navbar-nav-link {
+    margin-left: 15px;
+}
+
+.navbar .navbar-nav {
+    margin-right: auto; 
+}
