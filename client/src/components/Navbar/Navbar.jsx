@@ -24,7 +24,7 @@ function Navbar() {
                         <Link to={"/signUp"} className="navbar-nav-link">SignUp</Link>
                     </>
             }
-            <Link to={"#cart"} className="navbar-nav-link">Cart</Link>
+            <Link to={"/cart"} className="navbar-nav-link">Cart</Link>
         </div>
       </div>
       <div className="navbar-search">
