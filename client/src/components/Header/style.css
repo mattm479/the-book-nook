@@ -1,35 +1,60 @@
+/* style.css */
 
 .header {
-    background: #4A3F35;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .header-logo {
-    font-family: 'Merriweather, serif';
-    font-size: 36px;
-    font-weight: bold;
-    color: #F0EAD6;
-    text-transform: uppercase;
-  }
-  
-  .header-nav {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .header-nav-link {
-    font-family: 'Open Sans, sans-serif';
-    font-size: 18px;
-    color: #F0EAD6;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .header-nav-link:hover {
-    color: #C0A77B;
-  }
-  
-  
+  background: #4A3F35;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Ensure the header takes full width */
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1; /* Make sure it doesn't cover the content */
+}
+
+.header-logo {
+  font-family: 'Merriweather', serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: #F0EAD6;
+  text-transform: uppercase;
+}
+
+.header-search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.search-input {
+  width: 250px; /* Adjust width as needed */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-button {
+  padding: 8px 16px;
+  margin-left: 10px;
+  font-size: 16px;
+  background: #32a85a;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-button:hover {
+  background: #28a14d;
+}

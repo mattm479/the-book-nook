@@ -10,6 +10,8 @@ import BookDetails from "./pages/BookDetails.jsx";
 import Admin from "./pages/Admin.jsx";
 import SignOut from "./pages/SignOut.jsx";
 import BookSearch from "./pages/BookSearch.jsx";
+import Cart from "./components/Cart/cart.jsx"
+import ContactForm from "./pages/ContactForm.jsx";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
             {
                 path: '/admin',
                 element: <Admin />
+            },
+            {
+                path: '/cart',
+                element: <Cart />
+            },
+            {
+                path: '/contact',
+                element: <ContactForm />
             }
         ]
     }

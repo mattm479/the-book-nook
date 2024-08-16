@@ -35,7 +35,7 @@ const typeDefs = `
   }
 
   type Query {
-    me: User
+    me(_id: ID!): User
     bookSearch(query: String!): [Book]
     getBooks: [Book]
     getSingleBook(bookISBN: String!): Book
@@ -47,7 +47,7 @@ const typeDefs = `
     signIn(username: String!, password: String!): Auth
     changeUsername(userId: ID!, username: String!): Auth
     changeEmail(userId: ID!, email: String!): Auth
-    changePassword(userId: ID!, password: String!): Boolean
+    changePassword(userId: ID!, password: String!): Auth
     signOut(userId: ID!): Boolean
     addToCart(userId: ID!, bookISBN: String!): Book
     saveBook(userId: ID!, bookISBN: String!): Boolean

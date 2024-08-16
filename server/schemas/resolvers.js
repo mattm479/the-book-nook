@@ -1,9 +1,19 @@
 const { User, Book, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const bcrypt = require("bcrypt");
 
 
 const resolvers = {
    Query: {
+       me: async (parent, { _id }) => {
+           const foundUser = await User.findById(_id);
+
+           if (!foundUser) {
+               throw new Error('Cannot find a user with this id!');
+           }
+
+           return foundUser;
+       },
       bookSearch: async (parent, { query }, context) => {
          try {
            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
@@ -80,6 +90,20 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in to change your email');
        },
+
+        changePassword: async (parent, { userId, password }, context) => {
+            if (context.user && context.user._id === userId) {
+                const saltRounds = 10;
+                const user = await User.findByIdAndUpdate(
+                    userId,
+                    { password: await bcrypt.hash(password, saltRounds) },
+                    { new: true }
+                );
+                const token = signToken(user);
+                return { token, user };
+            }
+            throw new AuthenticationError('You need to be logged in to change your password');
+        },
 
        addToCart: async (parent, { userId, bookISBN }, context) => {
           if (context.user && context.user._id === userId) {

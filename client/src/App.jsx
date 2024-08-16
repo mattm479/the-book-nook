@@ -30,18 +30,20 @@ const client = new ApolloClient({
 function App() {
   return (
     <div>
-      <ApolloProvider client={client}>
-        <ThemeProvider>
-          <Flex direction="column" gap="2">
-            <Theme>
-              <Navbar />
-              <Header />
+    <ApolloProvider client={client}>
+      <ThemeProvider>
+        <Flex direction="column" style={{ minHeight: '100vh' }}>
+          <Theme>
+            <Navbar />
+            <Header />
+            <Flex direction="column" style={{ flex: 1 }}>
               <Outlet />
-              <Footer />
-            </Theme>
-          </Flex>
-        </ThemeProvider>
-      </ApolloProvider>
+            </Flex>
+            <Footer />
+          </Theme>
+        </Flex>
+      </ThemeProvider>
+    </ApolloProvider>
     </div>
   );
 }
