@@ -1,0 +1,26 @@
+.profile {
+    margin: 25px auto;
+}
+
+.item {
+    margin-bottom: 25px;
+}
+
+.label {
+    min-width: 88px;
+}
+
+.change-form button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+input:disabled + button {
+    display: none;
+}
+
+input:not(:disabled) + button + button {
+    display: none;
+}
