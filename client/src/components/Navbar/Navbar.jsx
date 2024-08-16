@@ -27,16 +27,6 @@ function Navbar() {
             <Link to={"/cart"} className="navbar-nav-link">Cart</Link>
         </div>
       </div>
-      <div className="navbar-search">
-        <input
-          type="text"
-          placeholder="Search for books..."
-          className="search-input"
-        />
-        <button className="search-button">
-          Search
-        </button>
-      </div>
     </nav>
   );
 }
