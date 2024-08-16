@@ -49,9 +49,10 @@ const router = createBrowserRouter([
                 path: '/cart',
                 element: <Cart />
             },
+            {
                 path: '/contact',
                 element: <ContactForm />
-            },
+            }
         ]
     }
 ]);
