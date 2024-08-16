@@ -11,7 +11,7 @@ function Footer() {
           <p><a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Smashicons - Flaticon</a></p>
         </div>
         <div className="footer-right">
-          <a href="#contact" className="footer-link">Contact Us</a>
+          <a href="contact" className="footer-link">Contact Us</a>
         </div>
       </div>
     </footer>
