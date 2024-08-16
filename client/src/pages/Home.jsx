@@ -34,11 +34,6 @@ function Home() {
           {/* Add more categories as needed */}
         </ul>
       </Box>
-      <Box className="homepage-promotions">
-        <Heading size="3">Special Promotions</Heading>
-        <Text>Check out our latest promotions and discounts!</Text>
-        {/* Add promotional content or links */}
-      </Box>
     </Box>
   );
 }
