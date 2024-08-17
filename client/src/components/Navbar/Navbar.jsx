@@ -1,5 +1,4 @@
 import bookIcon from '../../assets/book.png';
-import SearchBar from '../SearchBar/searchBar'
 import './style.css';
 import {Link} from "react-router-dom";
 import Auth from "../../utils/auth.js";
@@ -11,14 +10,11 @@ function Navbar() {
     <nav className="navbar">
     <div className="navbar-left">
         <div className="navbar-logo">
-            <img src={bookIcon} alt="Book Nook" className="navbar-logo-icon" />
-        </div>
-        <div className="navbar-nav">
-            <Link to="/" className="navbar-nav-link">Home</Link>
-            <Link to="/cart" className="navbar-nav-link">Cart</Link>
+            <Link to="/" className="navbar-nav-link"><img src={bookIcon} alt="Book Nook" className="navbar-logo-icon"/>&nbsp;&nbsp;The Book Nook</Link>
         </div>
     </div>
     <div className="navbar-right">
+        <Link to="/cart" className="navbar-nav-link">Cart</Link>
         {isLoggedIn
             ? <>
                 <Link to="/profile" className="navbar-nav-link">Profile</Link>
