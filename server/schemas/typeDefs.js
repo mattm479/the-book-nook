@@ -9,7 +9,7 @@ const typeDefs = `
     orders: [Order]
   }
 
-  type Book{
+  type Book {
     bookId: ID!
     bookISBN: String
     description: String!
@@ -22,11 +22,22 @@ const typeDefs = `
     purchaseQuantity: Int
     inventory: Int!
   }
+  
+  input CartItem {
+    id: ID!
+    name: String!
+    price: Float!
+    quantity: Int!
+  }
 
   type Order {
     _id: ID
     purchaseDate: String
     books: [Book]
+  }
+  
+  type Checkout {
+    session: ID
   }
 
   type Auth {
@@ -39,7 +50,8 @@ const typeDefs = `
     bookSearch(query: String!): [Book]
     getBooks: [Book]
     getSingleBook(bookISBN: String!): Book
-    orderHistory(userId: ID!): [Order]
+    viewOrderHistory(userId: ID!): [Order]
+    getCheckout(books: [CartItem]!): Checkout
   }
 
   type Mutation {
@@ -52,7 +64,6 @@ const typeDefs = `
     addToCart(userId: ID!, bookISBN: String!): Book
     saveBook(userId: ID!, bookISBN: String!): Boolean
     removeItemFromCart(userId: ID!, bookISBN: String!): Boolean
-    viewOrderHistory(userId: ID!): [Order]
   }
 `;
 
