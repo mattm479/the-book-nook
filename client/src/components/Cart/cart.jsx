@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
+import {useEffect, useState} from 'react';
 import './style.css';
+import {useLazyQuery} from "@apollo/client";
+import {QUERY_CHECKOUT} from "../../utils/queries.js";
+import {loadStripe} from "@stripe/stripe-js";
+
+const stripePromise = loadStripe("pk_test_51PlFYdHfqfAlbTXAqJEprt313NBdrNs2EEfbFknzQALyymBepeQlEzxT0JV6WVJasPFxSHlrOnGxLOr5moSnfuQN00E11ioENF");
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'Book 1', price: 19.99, quantity: 2 },
     { id: 2, name: 'Book 2', price: 9.99, quantity: 1 },
   ]);
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+  useEffect(() => {
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({sessionId: data.getCheckout.session});
+      });
+    }
+  }, [data]);
 
   const handleRemoveItem = (id) => {
     setCartItems(cartItems.filter(item => item.id !== id));
@@ -29,6 +43,12 @@ const Cart = () => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   };
 
+  const handleCheckout = (event) => {
+    event.preventDefault();
+
+    getCheckout({variables: {books: cartItems}});
+  }
+
   return (
     <div className="cart">
       <h2>Shopping Cart</h2>
@@ -37,24 +57,24 @@ const Cart = () => {
       ) : (
         <div className="cart-items">
           {cartItems.map(item => (
-            <div key={item.id} className="cart-item">
-              <span className="item-name">{item.name}</span>
-              <span className="item-price">${item.price.toFixed(2)}</span>
-              <div className="item-quantity">
-                <button onClick={() => handleDecreaseQuantity(item.id)}>-</button>
-                <span>{item.quantity}</span>
-                <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
+              <div key={item.id} className="cart-item">
+                <span className="item-name">{item.name}</span>
+                <div className="item-quantity">
+                  <button onClick={() => handleDecreaseQuantity(item.id)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => handleIncreaseQuantity(item.id)}>+</button>
+                </div>
+                <span className="item-price">${item.price.toFixed(2)}</span>
+                <span className="item-total">${(item.price * item.quantity).toFixed(2)}</span>
+                <button onClick={() => handleRemoveItem(item.id)} className="remove-button">Remove</button>
               </div>
-              <span className="item-total">${(item.price * item.quantity).toFixed(2)}</span>
-              <button onClick={() => handleRemoveItem(item.id)} className="remove-button">Remove</button>
-            </div>
           ))}
           <div className="cart-total">
             <strong>Total: ${calculateTotal()}</strong>
+            <button onClick={() => handleCheckout} className="checkout-button">Proceed to Checkout</button>
           </div>
         </div>
       )}
-      <button className="checkout-button">Proceed to Checkout</button>
     </div>
   );
 };

@@ -65,3 +65,11 @@ export const GET_SINGLE_BOOK = gql`
     }
 `;
 
+export const QUERY_CHECKOUT = gql`
+    query getCheckout($id: ID!, $name: String!, $price: Float!, $quantity: Int!) {
+        getCheckout(id: $id, name: $name, price: $price, quantity: $quantity) {
+            session
+        }
+    }
+`;
+
