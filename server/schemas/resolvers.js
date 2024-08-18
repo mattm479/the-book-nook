@@ -1,6 +1,7 @@
 const { User, Book, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const bcrypt = require("bcrypt");
+require('dotenv').config();
 
 
 const resolvers = {
@@ -60,7 +61,6 @@ const resolvers = {
       getBooks: async(parent, args, context) => {
          return await Book.find({})
       }
-
     },
 
     Mutation: {
@@ -171,6 +171,41 @@ const resolvers = {
             }
          }
       },
+
+      sendEmail: async (parent, {username, email, message}, context) => {
+         const data = {
+            service_id: process.env.SERVICE_KEY,
+            template_id: process.env.TEMPLATE_KEY,
+            user_id: process.env.PUBLIC_KEY,
+            template_params: {
+               username: username,
+               email: email,
+               message: message
+            }
+         };
+
+         const headers = {
+            'Content-type': 'application/json',
+          };
+          
+         const options = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data),
+          };
+        
+          fetch('https://api.emailjs.com/api/v1.0/email/send', options)
+            .then((response) => {
+              if (response.ok) {
+                console.log('Email sent!');
+              } else {
+                return response.text().then((text) => Promise.reject(text));
+              }
+            })
+            .catch((error) => {
+              console.log('FAILED... ', error);
+            });
+      }
    },
 };
 
