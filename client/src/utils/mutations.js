@@ -123,19 +123,9 @@ export const SIGN_OUT = gql`
 `;
 
 export const ADD_TO_CART = gql`
-    mutation addToCart($userId: ID!, $bookISBN: String!) {
-        addToCart(userId: $userId, bookISBN: $bookISBN) {
+    mutation addToCart($userId: ID!, $bookId: String!, $title: String!, $price: Int!, $quantity: Int!) {
+        addToCart(userId: $userId, bookId: $bookId, title: $title, price: $price, quantity: $quantity) {
             bookId
-            title
-            authors
-            description
-            image
-            inventory
-            price
-            genre
-            pageCount
-            averageRating
-            ratingsCount
         }
     }
 `;

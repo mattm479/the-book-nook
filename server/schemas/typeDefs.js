@@ -7,6 +7,7 @@ const typeDefs = `
     bookCount: Int
     savedBooks: [Book]!
     orders: [Order]
+    cart: [Book]
   }
 
   type Book {
@@ -19,7 +20,7 @@ const typeDefs = `
     authors: [String]
     categories: [String]
     price: Float!
-    purchaseQuantity: Int
+    quantity: Int
     inventory: Int!
   }
   
@@ -61,7 +62,7 @@ const typeDefs = `
     changeEmail(userId: ID!, email: String!): Auth
     changePassword(userId: ID!, password: String!): Auth
     signOut(userId: ID!): Boolean
-    addToCart(userId: ID!, bookISBN: String!): Book
+    addToCart(userId: ID!, bookId: String!, title: String!, price: Int!, quantity: Int!): Book
     saveBook(userId: ID!, bookISBN: String!): Boolean
     removeItemFromCart(userId: ID!, bookISBN: String!): Boolean
     sendEmail(username: String, email: String!, message: String!): Boolean
