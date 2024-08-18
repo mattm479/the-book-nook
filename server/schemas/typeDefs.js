@@ -53,7 +53,7 @@ const typeDefs = `
     saveBook(userId: ID!, bookISBN: String!): Boolean
     removeItemFromCart(userId: ID!, bookISBN: String!): Boolean
     viewOrderHistory(userId: ID!): [Order]
-    sendEmail(username: String!, email: String!, message: String!): Boolean
+    sendEmail(username: String, email: String!, message: String!): Boolean
   }
 `;
 
