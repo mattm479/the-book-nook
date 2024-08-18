@@ -14,13 +14,10 @@ We created an online book store that allows a user to browse books by category o
 
 ## Usage
 
-The user starts out at the home page. From there they can view featured books, browse by category, or use the search bar to look up a book. The user can also view their cart, login, or signup. Once logged in, they can save books to a wish list and view their order history.
+The user starts out at the home page. From there they can view featured books, browse by category, or use the search bar to look up a book. The user can also view their cart, login, or signup. Once logged in, they can place an order, edit their account details, or view their order history.
 
-TODO: add screenshots and/or render link
+Deployed on Render: https://the-book-nook-8cgy.onrender.com
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
 ## Technologies
 
 Technologies used: Google Books API, React, Radix UI, Vite, MongoDB, JWT, Apollo, GraphQL, Express.js, Node.js, bcrypt, dotenv

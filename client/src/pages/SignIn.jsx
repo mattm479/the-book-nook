@@ -5,6 +5,7 @@ import { SIGN_IN } from '../utils/mutations.js';
 import Auth from '../utils/auth.js';
 import {Box, Card} from "@radix-ui/themes";
 import * as Form from "@radix-ui/react-form";
+import '../styles/sign-up.css';
 
 function SignIn(props) {
     const form = useRef();
