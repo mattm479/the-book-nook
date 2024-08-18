@@ -16,7 +16,7 @@ function ContactForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${formData.username}, Email: ${formData.email}, Message: ${formData.message}`);
+    console.log(formData);
     sendEmail({
       variables: {
         username: formData.username,
@@ -24,6 +24,7 @@ function ContactForm() {
         message: formData.message
       }
     });
+    form.current.reset();
   };
 
 
