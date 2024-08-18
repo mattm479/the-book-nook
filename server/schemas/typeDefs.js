@@ -64,6 +64,7 @@ const typeDefs = `
     addToCart(userId: ID!, bookISBN: String!): Book
     saveBook(userId: ID!, bookISBN: String!): Boolean
     removeItemFromCart(userId: ID!, bookISBN: String!): Boolean
+    sendEmail(username: String, email: String!, message: String!): Boolean
   }
 `;
 

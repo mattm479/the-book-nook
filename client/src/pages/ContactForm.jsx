@@ -1,12 +1,14 @@
 import { useState, useRef } from 'react';
 import * as Form from '@radix-ui/react-form';
 import '../styles/contact.css';
-import emailjs from '@emailjs/browser';
+import { useMutation } from '@apollo/client';
+import { SEND_EMAIL } from '../utils/mutations';
 import {Box, Card} from "@radix-ui/themes";
 
 function ContactForm() {
   const form = useRef();
   const [formData, setFormData] = useState({ username: "", email: "", message: "" });
+  const [sendEmail] = useMutation(SEND_EMAIL);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -15,20 +17,15 @@ function ContactForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${formData.username}, Email: ${formData.email}, Message: ${formData.message}`);
-
-    emailjs
-      .sendForm(process.env.SERVICE_KEY, process.env.TEMPLATE_KEY, form.current, {
-        publicKey: process.env.PUBLIC_KEY,
-      })
-      .then(
-        () => {
-          console.log('SUCCESS!');
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
+    console.log(formData);
+    sendEmail({
+      variables: {
+        username: formData.username,
+        email: formData.email,
+        message: formData.message
+      }
+    });
+    form.current.reset();
   };
 
 

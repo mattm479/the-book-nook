@@ -175,3 +175,9 @@ export const ORDER_HISTORY = gql`
         }
     }
 `;
+
+export const SEND_EMAIL = gql`
+    mutation sendEmail($username: String, $email: String!, $message: String!) {
+        sendEmail(username: $username, email: $email, message: $message)
+    }
+`;
