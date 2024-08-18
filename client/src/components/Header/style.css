@@ -20,21 +20,6 @@
   z-index: -1; /* Make sure it doesn't cover the content */
 }
 
-.header-logo {
-  font-family: 'Merriweather', serif;
-  font-size: 36px;
-  font-weight: bold;
-  color: #F0EAD6;
-  text-transform: uppercase;
-}
-
-.header-search {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-}
-
 .search-input {
   width: 250px; /* Adjust width as needed */
   padding: 8px;

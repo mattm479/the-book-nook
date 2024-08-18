@@ -1,6 +1,7 @@
 const { User, Book, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const bcrypt = require("bcrypt");
+const stripe = require('stripe')('sk_test_51PlFYdHfqfAlbTXAMhC0QCYZrf8Ku4aoAiiiqlQhMImOIZxPW4tCiErrc99zNyX3V5D3wTAweSDG8Hlq2GH28SUL005Qt65XxZ');
 
 const resolvers = {
    Query: {
@@ -28,6 +29,7 @@ const resolvers = {
             : 'No ISBN-10 available',
              image: item.volumeInfo.imageLinks?.thumbnail || '',
              categories: item.volumeInfo.categories || [],
+             inventory: Math.floor(Math.random() * 100),
              price: item.saleInfo?.retailPrice?.amount || Math.floor(Math.random() * (80 - 50 + 1)) + 50,
            }));
            return books;
@@ -58,7 +60,47 @@ const resolvers = {
 
       getBooks: async(parent, args, context) => {
          return await Book.find({})
-      }
+      },
+
+       viewOrderHistory: async (parent, { userId }, context) => {
+           if (context.user && context.user._id === userId) {
+               const orders = await Order.find({ user: userId });
+               return orders;
+           }
+       },
+
+       getCheckout: async (parent, args, context) => {
+           const url = new URL(context.headers.referer).origin;
+
+           const line_items = [];
+
+           for (const book of args.books) {
+               const product = await stripe.products.create({
+                   name: book.name
+               });
+
+               const price = await stripe.prices.create({
+                   product: product.id,
+                   unit_amount: book.price * 100,
+                   currency: 'usd',
+               });
+
+               line_items.push({
+                   price: price.id,
+                   quantity: 1
+               });
+           }
+
+           const session = await stripe.checkout.sessions.create({
+               payment_method_types: ['card'],
+               line_items: line_items,
+               mode: 'payment',
+               success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+               cancel_url: `${url}/`
+           });
+
+           return { session: session.id };
+       }
     },
 
     Mutation: {
@@ -149,13 +191,6 @@ const resolvers = {
 
          const token = signToken(user);
          return { token, user };
-      },
-
-      viewOrderHistory: async (parent, { userId }, context) => {
-         if (context.user && context.user._id === userId) {
-            const orders = await Order.find({ user: userId });
-            return orders;
-         }
       },
 
       removeItemFromCart: async (parent, { userId, bookISBN }, context) => {

@@ -4,8 +4,7 @@ import SearchBar from '../SearchBar/searchBar';
 function Header() {
   return (
     <header className="header">
-    <div className="header-logo"></div>
-    <div className="header-search">
+    <div style={{ margin: "0px auto" }}>
       <SearchBar />
       </div>
   </header>

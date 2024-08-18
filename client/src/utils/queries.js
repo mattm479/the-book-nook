@@ -29,6 +29,7 @@ export const BOOK_SEARCH = gql`
             description
             image
             price
+            inventory
         }
     }
 `;
@@ -61,6 +62,14 @@ export const GET_SINGLE_BOOK = gql`
             pageCount
             averageRating
             ratingsCount
+        }
+    }
+`;
+
+export const QUERY_CHECKOUT = gql`
+    query getCheckout($id: ID!, $name: String!, $price: Float!, $quantity: Int!) {
+        getCheckout(id: $id, name: $name, price: $price, quantity: $quantity) {
+            session
         }
     }
 `;

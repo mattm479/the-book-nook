@@ -4,7 +4,7 @@ import {ME} from "../utils/queries.js";
 import {Box, Button, Card, Code, DataList} from "@radix-ui/themes";
 import {useEffect, useState} from "react";
 
-import './Profile.css';
+import '../styles/Profile.css';
 import {CHANGE_EMAIL, CHANGE_PASSWORD, CHANGE_USERNAME} from "../utils/mutations.js";
 
 function Profile() {
