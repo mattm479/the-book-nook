@@ -1,8 +1,6 @@
 const { User, Book, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const bcrypt = require("bcrypt");
-require('dotenv').config();
-
 
 const resolvers = {
    Query: {
