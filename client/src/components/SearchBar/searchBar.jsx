@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, createSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SearchBar = () => {
    const navigate = useNavigate();
@@ -10,14 +10,15 @@ const SearchBar = () => {
             pathname: '/bookSearch',
             search: `q=${searchTerm}`,
             })
-      }   
+      }
 
    }
-   
+
    return (
       <div className="navbar-search">
         <input
           type="text"
+          style={{ width: "250px" }}
           placeholder="Search for books..."
           className="search-input"
           value= {searchTerm}

@@ -29,6 +29,7 @@ export const BOOK_SEARCH = gql`
             description
             image
             price
+            inventory
         }
     }
 `;
