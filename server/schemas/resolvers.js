@@ -145,18 +145,22 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in to change your password');
         },
 
-       addToCart: async (parent, { userId, bookISBN }, context) => {
-          if (context.user && context.user._id === userId) {
-          const book = await Book.findOne({ isbn: bookISBN });
-          if (!book) {
-             throw new Error('Book not found');
+       addToCart: async (parent, { userId, bookId, title, price, quantity}, context) => {
+
+          const book = {
+               bookId: bookId,
+               title: title,
+               price: price,
+               quantity: quantity,
           }
+          
           const user = await User.findById(userId);
-          user.cart.push(book._id);
+          user.cart.push(book);
           await user.save();
+          console.log(user)
           return book;
-          }
-          throw new AuthenticationError('You need to be logged in to add items to your cart');
+          
+         //  throw AuthenticationError;
        },
 
        saveBook: async (parent, { userId, bookISBN }, context) => {
@@ -170,7 +174,7 @@ const resolvers = {
           await user.save();
           return true;
           }
-          throw new AuthenticationError('You need to be logged in to save books');
+          throw AuthenticationError;
        },
 
       signUp: async (parent, { username, email, password }) => {

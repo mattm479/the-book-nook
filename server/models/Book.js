@@ -40,8 +40,10 @@ const bookSchema = new Schema({
     type: Number,
     required: true,
   },
-  purchaseQuantity: {
+  quantity: {
     type: Number,
+    default: 0,
+    required: true,
   },
   inventory: {
     type: Number,

@@ -30,12 +30,10 @@ const userSchema = new Schema(
         default: []
       }
     ],
-    cart: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Book'
-      }
-    ],
+    cart: {
+      type: [],
+      default: [],
+    },
     orders: [
       {
         type: Schema.Types.ObjectId,
