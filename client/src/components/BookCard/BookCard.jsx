@@ -2,7 +2,7 @@ import { Box, Card, Inset, Text } from "@radix-ui/themes";
 import { useMutation } from '@apollo/client';
 import { ADD_TO_CART } from '../../utils/mutations';
 import auth from "../../utils/auth";
-
+import {Link} from "react-router-dom";
 
 function BookCard(bookData) {
     const profile = auth.getProfile();
@@ -26,10 +26,10 @@ function BookCard(bookData) {
     }
 
     return (
-        <Box maxWidth="400px">
-            <Card size="2">
+        <Box width="400px">
+            <Card size="3">
                 <Inset clip="padding-box" side="top" pb="current">
-                    <img
+                    <Link to="/book-details" state={bookData}><img
                         src={bookData.bookData.image}
                         alt="Book Cover Image"
                         style={{
@@ -39,13 +39,13 @@ function BookCard(bookData) {
                             height: 140,
                             backgroundColor: 'var(--gray-5)',
                         }}
-                    />
+                    /></Link>
                 </Inset>
                 <Text as="p" size="3">
-                    <strong>Title:</strong> {bookData.bookData.title}
+                    <strong>Title:</strong> <Link to="/book-details" state={bookData}>{bookData.bookData.title}</Link>
                 </Text>
                 <Text as="p" size="3">
-                    <strong>Authors:</strong> {bookData.bookData.authors.join(", ")}
+                     <strong>Authors:</strong> {bookData.bookData.authors.join(", ")}
                 </Text>
                 <Text as="p" size="3">
                     <strong>Description:</strong> {bookData.bookData.description}
