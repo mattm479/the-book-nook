@@ -8,8 +8,8 @@ const stripePromise = loadStripe("pk_test_51PlFYdHfqfAlbTXAqJEprt313NBdrNs2EEfbF
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Book 1', price: 19.99, quantity: 2 },
-    { id: 2, name: 'Book 2', price: 9.99, quantity: 1 },
+    { id: 1, title: 'Book 1', price: 19.99, quantity: 2 },
+    { id: 2, title: 'Book 2', price: 9.99, quantity: 1 },
   ]);
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -66,12 +66,12 @@ const Cart = () => {
                 </div>
                 <span className="item-price">${item.price.toFixed(2)}</span>
                 <span className="item-total">${(item.price * item.quantity).toFixed(2)}</span>
-                <button onClick={() => handleRemoveItem(item.id)} className="remove-button">Remove</button>
+                <button onClick={() => handleRemoveItem(item.id)} className="Button">Remove</button>
               </div>
           ))}
           <div className="cart-total">
             <strong>Total: ${calculateTotal()}</strong>
-            <button onClick={() => handleCheckout} className="checkout-button">Proceed to Checkout</button>
+            <button onClick={() => handleCheckout} className="Button">Proceed to Checkout</button>
           </div>
         </div>
       )}

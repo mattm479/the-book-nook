@@ -1,28 +1,27 @@
 import { Box, Card, Inset, Text } from "@radix-ui/themes";
 import { useMutation } from '@apollo/client';
 import { ADD_TO_CART } from '../../utils/mutations';
-import auth from "../../utils/auth";
+import Auth from "../../utils/auth";
 import {Link} from "react-router-dom";
 
 function BookCard(bookData) {
-    const profile = auth.getProfile();
+    const profile = (Auth.loggedIn()) ? Auth.getProfile() : {};
     const [addToCart] = useMutation(ADD_TO_CART);
 
-    const handleClick = () => {
-        console.log(profile.data._id)
-        console.log(bookData.bookData)
-        addToCart({
-            variables: {
-                userId: profile.data._id,
-                bookId: bookData.bookData.bookId,
-                title: bookData.bookData.title,
-                price: bookData.bookData.price,
-                quantity: 1,
-            },
-        })
-            .then((response) => {
-                console.log(response);
-            })
+    const handleClick = async () => {
+        if (profile.data === undefined) {
+            alert("You must be logged in to add items to your cart.");
+        } else {
+            await addToCart({
+                variables: {
+                    userId: profile.data._id,
+                    bookId: bookData.bookData.bookId,
+                    title: bookData.bookData.title,
+                    price: bookData.bookData.price,
+                    quantity: 1,
+                },
+            });
+        }
     }
 
     return (
