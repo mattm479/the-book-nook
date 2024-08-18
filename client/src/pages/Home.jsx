@@ -12,10 +12,8 @@ function Home() {
   let books = [];
 
   useEffect(() => {
-    if (searchTerm) {
       searchBooks({ variables: { query: searchTerm } });
-    }
-  }, [searchTerm]);
+  }, []);
 
   if (loading) {
       return <div>Loading...</div>;
