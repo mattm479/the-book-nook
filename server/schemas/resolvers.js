@@ -30,6 +30,7 @@ const resolvers = {
             : 'No ISBN-10 available',
              image: item.volumeInfo.imageLinks?.thumbnail || '',
              categories: item.volumeInfo.categories || [],
+             inventory: Math.floor(Math.random() * 100),
              price: item.saleInfo?.retailPrice?.amount || Math.floor(Math.random() * (80 - 50 + 1)) + 50,
            }));
            return books;

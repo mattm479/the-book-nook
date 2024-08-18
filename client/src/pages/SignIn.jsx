@@ -38,7 +38,7 @@ function SignIn(props) {
                 <div className="container my-1">
                     <Link to="/signUp">← Go to SignUp</Link>
                     &nbsp;
-                    <span style={{ textAlign: "center" }}><h2>Login</h2></span>
+                    <span style={{ textAlign: "center" }}><h2>SignIn</h2></span>
                     &nbsp;
                     <Form.Root className="FormRoot" ref={form} onSubmit={handleFormSubmit}>
                         <Form.Field className="FormField" name="username">
