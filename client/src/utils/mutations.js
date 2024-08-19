@@ -135,10 +135,13 @@ export const SAVE_BOOK = gql`
     }
 `;
 
-export const REMOVE_ITEM_FROM_CART = gql`
-    mutation removeItemFromCart($userId: ID!, $bookISBN: String!) {
-        removeItemFromCart(userId: $userId, bookISBN: $bookISBN) {
+export const UPDATE_CART = gql`
+    mutation updateCart($userId: ID!, $cart: [CartItemInput]!) {
+        updateCart(userId: $userId, cart: $cart) {
             bookId
+            title
+            quantity
+            price
         }
     }    
 `;

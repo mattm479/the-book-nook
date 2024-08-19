@@ -1,17 +1,21 @@
 import {useEffect, useState} from 'react';
 import '../styles/cart.css';
-import {useLazyQuery} from "@apollo/client";
-import {QUERY_CHECKOUT} from "../utils/queries.js";
+import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
+import {ME, QUERY_CHECKOUT} from "../utils/queries.js";
 import {loadStripe} from "@stripe/stripe-js";
 import Auth from "../utils/auth.js";
 import {useNavigate} from "react-router-dom";
+import {UPDATE_CART} from "../utils/mutations.js";
 
 const stripePromise = loadStripe("pk_test_51PlFYdHfqfAlbTXAqJEprt313NBdrNs2EEfbFknzQALyymBepeQlEzxT0JV6WVJasPFxSHlrOnGxLOr5moSnfuQN00E11ioENF");
 
 const Cart = () => {
+  const profile = Auth.getProfile();
+  const { loading: userLoading, data: userData } = useQuery(ME, { variables: { _id: profile.data._id } });
   const navigate= useNavigate();
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState();
   const [getCheckout, { loading, data }] = useLazyQuery(QUERY_CHECKOUT);
+  const [updateCart] = useMutation(UPDATE_CART);
 
   useEffect(() => {
     if (!Auth.loggedIn()) {
@@ -29,23 +33,27 @@ const Cart = () => {
   });
 
   useEffect(() => {
-    if (localStorage.getItem('cart')) {
-      setCartItems(JSON.parse(localStorage.getItem('cart')));
+    if (userLoading) return;
+
+    setCartItems(userData.me.cart);
+  }, [userLoading]);
+
+  useEffect(() => {
+    if (userLoading) return;
+
+    if (cartItems && cartItems.length) {
+      updateCart({ variables: { userId: userData.me._id, cart: cartItems }});
     }
-  }, []);
+  }, [cartItems]);
 
   const handleRemoveItem = (id) => {
     setCartItems(cartItems.filter(item => item.bookId !== id));
-
-    localStorage.setItem('cart', JSON.stringify(cartItems));
   };
 
   const handleIncreaseQuantity = (id) => {
     setCartItems(cartItems.map(item =>
       item.bookId === id ? { ...item, quantity: item.quantity + 1 } : item
     ));
-
-    localStorage.setItem('cart', JSON.stringify(cartItems));
   };
 
   const handleDecreaseQuantity = (id) => {
@@ -54,12 +62,10 @@ const Cart = () => {
         ? { ...item, quantity: item.quantity - 1 }
         : item
     ));
-
-    localStorage.setItem('cart', JSON.stringify(cartItems));
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    return (cartItems) ? cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2) : 0.00;
   };
 
   const handleCheckout = async (event) => {
@@ -72,11 +78,11 @@ const Cart = () => {
     <div className="cart">
       {loading ? (<p>Loading...</p>) : "" }
       <h2>Shopping Cart</h2>
-      {cartItems.length === 0 ? (
+      {cartItems && cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <div className="cart-items">
-          {cartItems.map(item => (
+          {cartItems && cartItems.map(item => (
               <div key={item.bookId} className="cart-item">
                 <span className="item-name">{item.title}</span>
                 <div className="item-quantity">

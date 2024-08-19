@@ -31,18 +31,14 @@
   opacity: 0.8;
 }
 
-.Input,
+/*.Input,
 .Textarea {
   width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-
   font-size: 15px;
-  color: #06080f;
-  background-color: #eeeeff;
-  box-shadow: 0 0 0 1px var(--black-a9);
 }
 
 .Input:hover,
@@ -70,7 +66,7 @@
 .Textarea {
   resize: none;
   padding: 10px;
-}
+}*/
 
 .Button {
   padding: 8px 16px;

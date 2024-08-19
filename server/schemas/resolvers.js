@@ -7,7 +7,7 @@ const resolvers = {
    Query: {
        me: async (parent, { _id }) => {
            const foundUser = await User.findById(_id);
-
+            console.log(foundUser);
            if (!foundUser) {
                throw new Error('Cannot find a user with this id!');
            }
@@ -146,21 +146,21 @@ const resolvers = {
         },
 
        addToCart: async (parent, { userId, bookId, title, price, quantity}, context) => {
+           if (context.user && context.user._id === userId) {
+               const book = {
+                   bookId: bookId,
+                   title: title,
+                   price: price,
+                   quantity: quantity,
+               }
 
-          const book = {
-               bookId: bookId,
-               title: title,
-               price: price,
-               quantity: quantity,
-          }
+               const user = await User.findById(userId);
+               user.cart.push(book);
+               await user.save();
 
-          const user = await User.findById(userId);
-          user.cart.push(book);
-          await user.save();
-          console.log(user)
-          return book;
-
-         //  throw AuthenticationError;
+               return book;
+           }
+            throw AuthenticationError;
        },
 
        saveBook: async (parent, { userId, bookISBN }, context) => {
@@ -197,15 +197,14 @@ const resolvers = {
          return { token, user };
       },
 
-      removeItemFromCart: async (parent, { userId, bookISBN }, context) => {
+      updateCart: async (parent, { userId, cart }, context) => {
          if (context.user && context.user._id === userId) {
             const user = await User.findById(userId);
-            const index = user.cart.indexOf(bookISBN);
-            if (index !== -1) {
-               user.cart.splice(index, 1);
-               await user.save();
-               return true;
-            }
+
+            user.cart = cart;
+            await user.save();
+
+            return user.cart;
          }
       },
 
