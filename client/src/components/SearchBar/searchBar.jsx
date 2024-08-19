@@ -18,8 +18,8 @@ const SearchBar = () => {
       <div className="navbar-search">
         <input
           type="text"
-          style={{ width: "250px" }}
-          placeholder="Search for books..."
+          style={{ width: "350px" }}
+          placeholder="Search by title, author, or category"
           className="search-input"
           value= {searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
