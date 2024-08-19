@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer-content">
         <div className="footer-left">
           <p>&copy; 2024 The Book Nook. All rights reserved.</p>
-          <p><a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Smashicons - Flaticon</a></p>
+          <p><a href="https://www.flaticon.com/free-icons/book" className="footer-link" title="book icons">Book icons created by Smashicons - Flaticon</a></p>
         </div>
         <div className="footer-right">
           <a href="contact" className="footer-link">Contact Us</a>
