@@ -25,8 +25,9 @@ const typeDefs = `
   }
   
   input CartItem {
-    id: ID!
-    name: String!
+    userId: ID!
+    bookId: ID!
+    title: String!
     price: Float!
     quantity: Int!
   }
