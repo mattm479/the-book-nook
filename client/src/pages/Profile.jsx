@@ -72,8 +72,8 @@ function Profile() {
                             <div className="change-form">
                                 <input type="username" id="username" name="username" value={username}
                                        onChange={(event) => setUsername(event.target.value)} disabled/>
-                                <Button id="save-username" onClick={() => handleSubmit("username")}>Save</Button>
-                                <Button onClick={() => toggleInput("username")}>Change Username</Button>
+                                <Button className="Button" id="save-username" onClick={() => handleSubmit("username")}>Save</Button>
+                                <Button className="Button" onClick={() => toggleInput("username")}>Change Username</Button>
                             </div>
                         </DataList.Value>
                     </DataList.Item>
@@ -83,8 +83,8 @@ function Profile() {
                             <div className="change-form">
                                 <input type="email" id="email" name="email" value={email}
                                        onChange={(event) => setEmail(event.target.value)} disabled/>
-                                <Button id="save-email" onClick={() => handleSubmit("email")}>Save</Button>
-                                <Button onClick={() => toggleInput("email")}>Change Email</Button>
+                                <Button className="Button" id="save-email" onClick={() => handleSubmit("email")}>Save</Button>
+                                <Button className="Button" onClick={() => toggleInput("email")}>Change Email</Button>
                             </div>
                         </DataList.Value>
                     </DataList.Item>
@@ -94,8 +94,8 @@ function Profile() {
                             <div className="change-form">
                                 <input type="password" id="password" name="password" value={password}
                                        onChange={(event) => setPassword(event.target.value)} disabled/>
-                                <Button id="save-password" onClick={() => handleSubmit("password")}>Save</Button>
-                                <Button id="change-password-button" onClick={() => toggleInput("password")}>Change
+                                <Button className="Button" id="save-password" onClick={() => handleSubmit("password")}>Save</Button>
+                                <Button className="Button" id="change-password-button" onClick={() => toggleInput("password")}>Change
                                     Password</Button>
                             </div>
                         </DataList.Value>
