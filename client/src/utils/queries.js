@@ -16,6 +16,12 @@ export const ME = gql`
                 inventory
                 price
             }
+            cart {
+                bookId
+                title
+                quantity
+                price
+            }
         }
     }
 `;

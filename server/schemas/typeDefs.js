@@ -7,7 +7,7 @@ const typeDefs = `
     bookCount: Int
     savedBooks: [Book]!
     orders: [Order]
-    cart: [Book]
+    cart: [CartItem]
   }
 
   type Book {
@@ -24,8 +24,14 @@ const typeDefs = `
     inventory: Int!
   }
   
-  input CartItem {
-    userId: ID!
+  input CartItemInput {
+    bookId: ID!
+    title: String!
+    price: Float!
+    quantity: Int!
+  }
+  
+  type CartItem {
     bookId: ID!
     title: String!
     price: Float!
@@ -53,7 +59,7 @@ const typeDefs = `
     getBooks: [Book]
     getSingleBook(bookISBN: String!): Book
     viewOrderHistory(userId: ID!): [Order]
-    getCheckout(books: [CartItem]!): Checkout
+    getCheckout(books: [CartItemInput]!): Checkout
   }
 
   type Mutation {
@@ -65,7 +71,7 @@ const typeDefs = `
     signOut(userId: ID!): Boolean
     addToCart(userId: ID!, bookId: String!, title: String!, price: Int!, quantity: Int!): Book
     saveBook(userId: ID!, bookISBN: String!): Boolean
-    removeItemFromCart(userId: ID!, bookISBN: String!): Boolean
+    updateCart(userId: ID!, cart: [CartItemInput]!): [CartItem]
     sendEmail(username: String, email: String!, message: String!): Boolean
   }
 `;
