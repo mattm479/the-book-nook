@@ -20,7 +20,7 @@ First clone the repository from Github. After cloning you'll need to rename `.en
 
 After completing the installation, we can run `npm run develop` in our terminal. This should open a new window at localhost:3000.
 
-The user starts out at the home page. From there they can view featured books, browse by category, or use the search bar to look up a book. The user can also view their cart, login, or signup. Once logged in, they can place an order, edit their account details, or view their order history.
+The user starts out at the home page with a random selection of books being presented. While logged out, the user can search for books, sign up, or send us a message via clicking on contact us at the bottom. Once logged in, they can place an order, edit their account details, add books to their cart and view their cart.
 
 ## Links and Screenshot
 
