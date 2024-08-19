@@ -78,8 +78,8 @@
   margin-right: auto;
   display: block;
   font-size: 16px;
-  background: #32a85a;
-  color: #FFFFFF;
+  background: #2C2A29;
+  color: #F0EAD6;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -87,7 +87,7 @@
   }
 
 .Button:hover {
-  background-color: var(--mauve-3);
+  background-color: #4A3F35;
 }
 
 .Button:focus {
