@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_TO_CART } from '../../utils/mutations';
 import Auth from "../../utils/auth";
 import {Link, useLocation} from "react-router-dom";
+import cart from "../Cart/cart.jsx";
 
 function BookCard(bookData) {
     const profile = (Auth.loggedIn()) ? Auth.getProfile() : {};
@@ -12,15 +13,19 @@ function BookCard(bookData) {
         if (profile.data === undefined) {
             alert("You must be logged in to add items to your cart.");
         } else {
-            await addToCart({
-                variables: {
-                    userId: profile.data._id,
-                    bookId: bookData.bookData.bookId,
-                    title: bookData.bookData.title,
-                    price: bookData.bookData.price,
-                    quantity: 1,
-                },
-            });
+            const cartItem = {
+                userId: profile.data._id,
+                bookId: bookData.bookData.bookId,
+                title: bookData.bookData.title,
+                price: Math.ceil(bookData.bookData.price),
+                quantity: 1
+            };
+
+            await addToCart({ variables: cartItem });
+
+            const cart = (localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
+            cart.push(cartItem);
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
     }
     const location = useLocation();
@@ -59,7 +64,7 @@ function BookCard(bookData) {
                     <strong>In Stock Qty:</strong> {bookData.bookData.inventory}
                 </Text>
                 <Text as="p" size="3">
-                    <strong>Price:</strong> ${bookData.bookData.price}
+                    <strong>Price:</strong> ${Math.ceil(bookData.bookData.price)}
                 </Text>
                 <button className="Button" onClick={handleClick}>
                     Add to Cart
