@@ -1,4 +1,4 @@
-import BookCard from "../components/BookCard/BookCard.jsx";
+import BookCard from "../components/BookCard.jsx";
 import {useLocation} from "react-router-dom";
 
 function BookDetails() {
