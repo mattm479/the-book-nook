@@ -76,18 +76,18 @@ const resolvers = {
 
            for (const book of args.books) {
                const product = await stripe.products.create({
-                   name: book.name
+                   name: book.title
                });
 
                const price = await stripe.prices.create({
                    product: product.id,
-                   unit_amount: book.price * 100,
+                   unit_amount_decimal: (book.price * 100).toPrecision(2),
                    currency: 'usd',
                });
 
                line_items.push({
                    price: price.id,
-                   quantity: 1
+                   quantity: book.quantity
                });
            }
 
@@ -153,13 +153,13 @@ const resolvers = {
                price: price,
                quantity: quantity,
           }
-          
+
           const user = await User.findById(userId);
           user.cart.push(book);
           await user.save();
           console.log(user)
           return book;
-          
+
          //  throw AuthenticationError;
        },
 
@@ -224,13 +224,13 @@ const resolvers = {
          const headers = {
             'Content-type': 'application/json',
           };
-          
+
          const options = {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(data),
           };
-        
+
           fetch('https://api.emailjs.com/api/v1.0/email/send', options)
             .then((response) => {
               if (response.ok) {

@@ -12,6 +12,7 @@ import SignOut from "./pages/SignOut.jsx";
 import BookSearch from "./pages/BookSearch.jsx";
 import Cart from "./components/Cart/cart.jsx"
 import ContactForm from "./pages/ContactForm.jsx";
+import Success from "./pages/Success.jsx";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <ContactForm />
+            },
+            {
+                path: '/success',
+                element: <Success />
             }
         ]
     }
