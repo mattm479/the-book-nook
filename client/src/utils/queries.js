@@ -73,7 +73,7 @@ export const GET_SINGLE_BOOK = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-    query getCheckout($books: [CartItem]!) {
+    query getCheckout($books: [CartItemInput]!) {
         getCheckout(books: $books) {
             session
         }
