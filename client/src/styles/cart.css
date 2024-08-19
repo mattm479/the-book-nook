@@ -59,9 +59,15 @@
   }
 
   .cart-total {
+    margin-top: 25px;
+    margin-right: 10px;
     font-size: 1.2em;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-content: flex-end;
   }
 
   .checkout-button {
