@@ -2,7 +2,7 @@ import { useLazyQuery } from '@apollo/client';
 import { useState, useEffect } from 'react';
 import { BOOK_SEARCH } from '../utils/queries';
 import { useSearchParams } from 'react-router-dom'
-import BookCard from "../components/BookCard/BookCard.jsx";
+import BookCard from "../components/BookCard.jsx";
 
 const BookSearch = () => {
    const [searchBooks, { loading, data}] = useLazyQuery(BOOK_SEARCH);

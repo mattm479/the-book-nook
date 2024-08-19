@@ -3,7 +3,7 @@ import '../styles/App.css';
 import {useLazyQuery} from "@apollo/client";
 import {BOOK_SEARCH} from "../utils/queries.js";
 import {useEffect} from "react";
-import BookCard from "../components/BookCard/BookCard.jsx";
+import BookCard from "../components/BookCard.jsx";
 
 function Home() {
   const categories = ["biographies", "computers", "art", "architecture", "mathematics", "medical", "music", "nature", "pets", "poetry", "science"];

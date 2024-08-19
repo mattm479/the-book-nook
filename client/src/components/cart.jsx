@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
-import './style.css';
+import '../styles/cart.css';
 import {useLazyQuery} from "@apollo/client";
-import {QUERY_CHECKOUT} from "../../utils/queries.js";
+import {QUERY_CHECKOUT} from "../utils/queries.js";
 import {loadStripe} from "@stripe/stripe-js";
-import Auth from "../../utils/auth.js";
+import Auth from "../utils/auth.js";
 import {useNavigate} from "react-router-dom";
 
 const stripePromise = loadStripe("pk_test_51PlFYdHfqfAlbTXAqJEprt313NBdrNs2EEfbFknzQALyymBepeQlEzxT0JV6WVJasPFxSHlrOnGxLOr5moSnfuQN00E11ioENF");

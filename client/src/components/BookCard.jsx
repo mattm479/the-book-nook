@@ -1,9 +1,9 @@
 import { Box, Card, Inset, Text } from "@radix-ui/themes";
 import { useMutation } from '@apollo/client';
-import { ADD_TO_CART } from '../../utils/mutations';
-import Auth from "../../utils/auth";
+import { ADD_TO_CART } from '../utils/mutations.js';
+import Auth from "../utils/auth.js";
 import {Link, useLocation} from "react-router-dom";
-import cart from "../Cart/cart.jsx";
+import cart from "./cart.jsx";
 
 function BookCard(bookData) {
     const profile = (Auth.loggedIn()) ? Auth.getProfile() : {};

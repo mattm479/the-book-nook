@@ -1,5 +1,5 @@
-import './style.css';
-import SearchBar from '../SearchBar/searchBar';
+import '../styles/header.css';
+import SearchBar from './searchBar';
 
 function Header() {
   return (

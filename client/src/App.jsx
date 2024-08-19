@@ -2,9 +2,9 @@ import '@radix-ui/themes/styles.css'; // Import Radix UI theme styles
 import { Flex, Theme } from '@radix-ui/themes';
 import { setContext } from '@apollo/client/link/context';
 import { ThemeProvider } from './theme/ThemeContext'; // Import ThemeProvider
-import Header from "./components/Header/Header.jsx";
-import Navbar from "./components/Navbar/Navbar.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+import Header from "./components/Header.jsx";
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {Outlet} from "react-router-dom";
 
