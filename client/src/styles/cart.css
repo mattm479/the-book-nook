@@ -21,6 +21,10 @@
     border-bottom: 1px solid #ddd;
   }
 
+  .cart-item button{
+    margin-right: 5px;
+  }
+
   .item-name {
     flex: 2;
   }
